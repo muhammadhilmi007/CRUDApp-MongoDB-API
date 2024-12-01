@@ -1,0 +1,53 @@
+<%- include('layout/header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-4">
+            <div class="card shadow">
+                <div class="card-header bg-success">
+                    <h3 class="text-center text-white">Edit User (<%= user.name %>)</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/update/<%= user.id %>" method="POST" enctype="multipart/form-data" id="edit-form">
+                        <div class="form-group mb-3">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" class="form-control form-control-lg"
+                                placeholder="Enter Name" required value="<%= user.name %>">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control form-control-lg"
+                                placeholder="Enter Email" required value="<%= user.email %>">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" class="form-control form-control-lg"
+                                placeholder="Enter Phone" required value="<%= user.phone %>">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" class="form-control form-control-lg"
+                                placeholder="Select Image">
+                        </div>
+                        <div class="form-group mb-3">
+                            <% if (user.image) { %>
+                                <img src="/uploads/<%= user.image %>" alt="Current user image" style="width: 300px; height: 300px;" class="img-thumbnail">
+                            <% } %>
+                        </div>
+                        <input type="hidden" name="old_image" value="<%= user.image %>">
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success" form="edit-form">
+                        <i class="fa fa-save mr-2" style="margin-right: 5px;"></i>Update User
+                    </button>
+                    <a href="/" class="btn btn-warning">
+                        <i class="fa fa-arrow-left mr-2" style="margin-right: 5px;"></i>Go Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>
